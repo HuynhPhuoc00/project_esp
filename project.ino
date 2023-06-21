@@ -44,10 +44,7 @@ void loop(){
         }
         if(customKey){ 
           switch(customKey){
-            case '1':
-            break;
             case '2':
-              // select = (select == 0)?1:select-1;
               if(select == 0){
                 menu =(menu->down == NULL)?menu:menu->down;
                 select = 1;
@@ -56,8 +53,6 @@ void loop(){
                 select -= 1;
               }
               break;
-            case '3':
-            break;
             case '4':
               menu = (menu->pre == NULL)? menu:menu->pre;
               select = 0;
@@ -96,10 +91,7 @@ void loop(){
               select = 0;
               Serial.println(customKey);
               break;
-            case '7':
-            break;
             case '8':
-              // select = (select == 1)?0:select+1;
               if(select == 1){
                 menu =(menu->down == NULL)?menu:menu->down;
                 select = 0;
@@ -117,17 +109,10 @@ void loop(){
             case 'B':
               menu = &Relay;
               break;
-            case 'C':
-              menu = &HR04;
-              break;
-            case 'D':
-              menu = &MQ6;
-              break;
             case '*': 
               select = 0;
               Serial.println(customKey);
               Exit = false;
-              break;
               break;
             default:
             break;
@@ -151,8 +136,5 @@ void loop(){
       }
       change = 1;
       break;
-    // case 3:
-
-    //   break;
   }
 }

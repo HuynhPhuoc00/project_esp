@@ -31,20 +31,18 @@ unsigned char device_arr[] = {RL_1,RL_2,Motor1};
 uint8_t change = 1; 
 
 unsigned long previousMillis = 0;
-unsigned long interval = 1000;  // Thời gian delay 1 giây
+unsigned long interval = 1000;
 
-const byte ROWS = 4; //four rows
-const byte COLS = 4; //four columns
-//define the cymbols on the buttons of the keypads
+const byte ROWS = 4;
+const byte COLS = 4; 
 char hexaKeys[ROWS][COLS] = {
   {'1','2','3','A'},
   {'4','5','6','B'},
   {'7','8','9','C'},
   {'*','0','#','D'}
 };
-byte rowPins[ROWS] = {2, 0, 4, 16}; //connect to the row pinouts of the keypad
-byte colPins[COLS] = {17, 5, 18, 19}; //connect to the column pinouts of the keypad
-//initialize an instance of class NewKeypad
+byte rowPins[ROWS] = {2, 0, 4, 16}; 
+byte colPins[COLS] = {17, 5, 18, 19};
 Keypad customKeypad = Keypad( makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS); 
 
 void configure_motor(){
@@ -144,18 +142,13 @@ int distance;
 
 void Sensor1(){
   Serial.println(distance);
-  unsigned long duration; // biến đo thời gian
-  /* Phát xung từ chân trig */
-  digitalWrite(trig,0);   // tắt chân trig
+  unsigned long duration; 
+  digitalWrite(trig,0);   
   delayMicroseconds(2);
-  digitalWrite(trig,1);   // phát xung từ chân trig
-  delayMicroseconds(5);   // xung có độ dài 5 microSeconds
-  digitalWrite(trig,0);   // tắt chân trig
-
-  /* Tính toán thời gian */
-  // Đo độ rộng xung HIGH ở chân echo. 
+  digitalWrite(trig,1);   
+  delayMicroseconds(5);  
+  digitalWrite(trig,0);  
   duration = pulseIn(echo,HIGH);  
-  // Tính khoảng cách đến vật.
   distance = int(duration/2/29.412);
   delay(50);
   if(distance <= 10 && distance >=5 ){
